@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iRail.Net", "iRail.Net\iRail.Net.csproj", "{422C75DF-B18B-47C7-85A6-F1E9DF7E4E17}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{4A06A4E2-F119-4621-A87D-90B316FB4D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{422C75DF-B18B-47C7-85A6-F1E9DF7E4E17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{422C75DF-B18B-47C7-85A6-F1E9DF7E4E17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{422C75DF-B18B-47C7-85A6-F1E9DF7E4E17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A06A4E2-F119-4621-A87D-90B316FB4D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A06A4E2-F119-4621-A87D-90B316FB4D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A06A4E2-F119-4621-A87D-90B316FB4D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A06A4E2-F119-4621-A87D-90B316FB4D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
