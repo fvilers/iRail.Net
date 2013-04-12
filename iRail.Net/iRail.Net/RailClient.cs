@@ -62,7 +62,7 @@ namespace iRail.Net
             return response.Connections;
         }
 
-        public async Task<Liveboard> LiveboardAsync(string station, bool? fast = null, Language language = null)
+        public async Task<Departure[]> LiveboardAsync(string station, bool? fast = null, Language language = null)
         {
             if (station == null) throw new ArgumentNullException("station");
 
@@ -79,10 +79,10 @@ namespace iRail.Net
 
             var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
 
-            return response.Liveboard;
+            return response.Departures.Items;
         }
 
-        public async Task<Liveboard> LiveboardByStationIdAsync(string stationId, Language language = null)
+        public async Task<Departure[]> LiveboardByStationIdAsync(string stationId, Language language = null)
         {
             if (stationId == null) throw new ArgumentNullException("stationId");
 
@@ -93,10 +93,10 @@ namespace iRail.Net
             };
             var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
 
-            return response.Liveboard; // TODO: change response (see VehicleInformation)
+            return response.Departures.Items;
         }
 
-        public async Task<VehicleInformation> VehiculeAsync(string vehicleId, bool? fast = null, Language language = null)
+        public async Task<Stop[]> VehiculeAsync(string vehicleId, bool? fast = null, Language language = null)
         {
             if (vehicleId == null) throw new ArgumentNullException("vehicleId");
 
@@ -113,14 +113,15 @@ namespace iRail.Net
 
             var response = await GetAsync<VehicleRequest, VehicleResponse>(request);
 
-            return response;
+            return response.Stops.Items;
         }
 
         private async Task<TResponse> GetAsync<TRequest, TResponse>(TRequest request)
-            where TRequest : RequestBase
+            where TRequest : JsonRequestBase
         {
-            var xml = await _httpClient.GetAsync(request);
-            var response = _serializer.Deserialize<TResponse>(xml);
+            // TODO: error management
+            var value = await _httpClient.GetAsync(request);
+            var response = await _serializer.DeserializeAsync<TResponse>(value);
 
             return response;
         }

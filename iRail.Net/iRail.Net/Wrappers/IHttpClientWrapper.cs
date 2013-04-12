@@ -5,6 +5,6 @@ namespace iRail.Net.Wrappers
 {
     public interface IHttpClientWrapper
     {
-        Task<string> GetAsync(RequestBase request);
+        Task<string> GetAsync(JsonRequestBase jsonRequest);
     }
 }

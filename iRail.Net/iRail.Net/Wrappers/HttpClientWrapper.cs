@@ -8,11 +8,11 @@ namespace iRail.Net.Wrappers
 {
     public class HttpClientWrapper : IHttpClientWrapper
     {
-        public async Task<string> GetAsync(RequestBase request)
+        public async Task<string> GetAsync(JsonRequestBase jsonRequest)
         {
-            if (request == null) throw new ArgumentNullException("request");
+            if (jsonRequest == null) throw new ArgumentNullException("jsonRequest");
 
-            var requestUri = request.ToRequestUri();
+            var requestUri = jsonRequest.ToRequestUri();
             Debug.WriteLine(requestUri);
             using (var client = new HttpClient())
             {

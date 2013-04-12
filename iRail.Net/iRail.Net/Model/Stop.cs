@@ -1,20 +1,22 @@
-﻿using System.Xml.Schema;
-using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace iRail.Net.Model
 {
     public class Stop
     {
-        [XmlElement("station", Form = XmlSchemaForm.Unqualified, IsNullable = true)]
-        public Station Station { get; set; }
-
-        [XmlElement("time", Form = XmlSchemaForm.Unqualified, IsNullable = true)]
-        public Time Time { get; set; }
-
-        [XmlAttribute("id")]
+        [JsonProperty("id")]
         public string Id { get; set; }
 
-        [XmlAttribute("delay")]
-        public int Delay { get; set; }
+        [JsonProperty("stationinfo")]
+        public Station Station { get; set; }
+
+        [JsonProperty("time")]
+        [JsonConverter(typeof(UnixTimestampToDateTimeConverter))]
+        public DateTime Time { get; set; }
+
+        [JsonProperty("delay")]
+        [JsonConverter(typeof(SecondsToTimeSpanConverter))]
+        public TimeSpan Delay { get; set; }
     }
 }

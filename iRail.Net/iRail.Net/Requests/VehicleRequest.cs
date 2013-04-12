@@ -1,7 +1,7 @@
 ﻿
 namespace iRail.Net.Requests
 {
-    public class VehicleRequest : RequestBase
+    public class VehicleRequest : JsonRequestBase
     {
         public VehicleRequest()
             : base("/vehicle/")

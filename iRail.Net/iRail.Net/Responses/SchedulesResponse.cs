@@ -1,13 +1,17 @@
 ﻿using iRail.Net.Model;
-using System.Xml.Schema;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace iRail.Net.Responses
 {
-    [XmlRootAttribute(ElementName = "connections", Namespace = "", IsNullable = false)]
-    public class SchedulesResponse : ResponseBase
+    public class SchedulesResponse
     {
-        [XmlElement("connection", Form = XmlSchemaForm.Unqualified)]
+        [JsonProperty("version")]
+        public string Version { get; set; }
+
+        [JsonProperty("timestamp")]
+        public string Timestamp { get; set; }
+
+        [JsonProperty("connection")]
         public Connection[] Connections { get; set; }
     }
 }

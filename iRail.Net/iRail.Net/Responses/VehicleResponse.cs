@@ -1,18 +1,23 @@
 ﻿using iRail.Net.Model;
-using System;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace iRail.Net.Responses
 {
-    [SerializableAttribute]
-    [XmlType(AnonymousType = true)]
-    [XmlRoot("vehicleinformation", Namespace = "", IsNullable = false)]
-    public class VehicleResponse : VehicleInformation
+    public class VehicleResponse
     {
-        [XmlAttribute(AttributeName = "version")]
+        [JsonProperty("version")]
         public string Version { get; set; }
 
-        [XmlAttribute(AttributeName = "timestamp")]
+        [JsonProperty("timestamp")]
         public string Timestamp { get; set; }
+
+        [JsonProperty("vehicle")]
+        public string VehicleValue { get; set; }
+
+        [JsonProperty("vehicleinfo")]
+        public Vehicle Vehicle { get; set; }
+
+        [JsonProperty("stops")]
+        public StopCollection Stops { get; set; }
     }
 }

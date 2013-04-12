@@ -1,13 +1,18 @@
 ﻿using iRail.Net.Model;
-using System.Xml.Schema;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace iRail.Net.Responses
 {
-    [XmlRoot(ElementName = "stations", Namespace = "", IsNullable = false)]
-    public class ListAllStationsResponse : ResponseBase
+    public class ListAllStationsResponse
     {
-        [XmlElement("station", Form = XmlSchemaForm.Unqualified, IsNullable = true)]
+        [JsonProperty("version")]
+        public string Version { get; set; }
+
+        [JsonProperty("timestamp")]
+        public string Timestamp { get; set; }
+
+        [JsonProperty("station")]
         public Station[] Stations { get; set; }
     }
 }

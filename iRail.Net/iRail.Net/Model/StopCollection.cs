@@ -2,12 +2,12 @@
 
 namespace iRail.Net.Model
 {
-    public class ViaCollection
+    public class StopCollection
     {
         [JsonProperty("number")]
         public string Number { get; set; }
 
-        [JsonProperty("via")]
-        public Via[] Items { get; set; }
+        [JsonProperty("stop")]
+        public Stop[] Items { get; set; }
     }
 }

@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -42,39 +45,39 @@
   <ItemGroup>
     <Compile Include="IRailClient.cs" />
     <Compile Include="Model\Arrival.cs" />
-    <Compile Include="Model\CollectionStop.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\Departure.cs" />
-    <Compile Include="Model\Direction.cs" />
-    <Compile Include="Model\JourneyBase.cs" />
     <Compile Include="Model\Language.cs" />
-    <Compile Include="Model\Liveboard.cs" />
     <Compile Include="Model\Platform.cs" />
     <Compile Include="Model\Station.cs" />
     <Compile Include="Model\Stop.cs" />
-    <Compile Include="Model\Time.cs" />
+    <Compile Include="Model\StopCollection.cs" />
     <Compile Include="Model\TimeSel.cs" />
     <Compile Include="Model\TransportType.cs" />
     <Compile Include="Model\Vehicle.cs" />
-    <Compile Include="Model\VehicleInformation.cs" />
     <Compile Include="Model\Via.cs" />
     <Compile Include="Model\ViaCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RailClient.cs" />
+    <Compile Include="Requests\JsonRequestBase.cs" />
     <Compile Include="Requests\ListAllStationsRequest.cs" />
     <Compile Include="Requests\LiveboardRequest.cs" />
-    <Compile Include="Requests\RequestBase.cs" />
     <Compile Include="Requests\SchedulesRequest.cs" />
     <Compile Include="Requests\VehicleRequest.cs" />
+    <Compile Include="Model\DepartureCollection.cs" />
     <Compile Include="Responses\ListAllStationsResponse.cs" />
     <Compile Include="Responses\LiveboardResponse.cs" />
-    <Compile Include="Responses\ResponseBase.cs" />
     <Compile Include="Responses\SchedulesResponse.cs" />
     <Compile Include="Responses\VehicleResponse.cs" />
+    <Compile Include="SecondsToTimeSpanConverter.cs" />
+    <Compile Include="UnixTimestampToDateTimeConverter.cs" />
     <Compile Include="Wrappers\HttpClientWrapper.cs" />
     <Compile Include="Wrappers\IHttpClientWrapper.cs" />
     <Compile Include="Wrappers\ISerializationWrapper.cs" />
-    <Compile Include="Wrappers\XmlSerializationWrapper.cs" />
+    <Compile Include="Wrappers\JsonSerializationWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

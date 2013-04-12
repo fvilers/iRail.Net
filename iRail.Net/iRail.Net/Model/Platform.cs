@@ -1,22 +1,13 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace iRail.Net.Model
 {
-    [Serializable]
-    [XmlType(AnonymousType = true)]
-    [XmlRoot(Namespace = "", IsNullable = true)]
     public class Platform
     {
-        [XmlAttribute("normal")]
+        [JsonProperty("name")]
+        public string Name { get; set; }
+
+        [JsonProperty("normal")]
         public string Normal { get; set; }
-
-        [XmlText]
-        public string Value { get; set; }
-
-        public override string ToString()
-        {
-            return Value ?? Normal;
-        }
     }
 }

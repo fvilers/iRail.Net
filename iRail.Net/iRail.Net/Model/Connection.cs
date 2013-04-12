@@ -1,26 +1,24 @@
-﻿using System;
-using System.Xml.Schema;
-using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace iRail.Net.Model
 {
-    [Serializable]
-    [XmlType(AnonymousType = true)]
     public class Connection
     {
-        [XmlElement("duration", Form = XmlSchemaForm.Unqualified)]
-        public int Duration { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        [XmlElement("departure")]
+        [JsonProperty("departure")]
         public Departure Departure { get; set; }
 
-        [XmlElement("arrival")]
+        [JsonProperty("arrival")]
         public Arrival Arrival { get; set; }
 
-        [XmlElement("vias", Form = XmlSchemaForm.Unqualified)]
-        public ViaCollection Vias { get; set; }
+        [JsonProperty("duration")]
+        [JsonConverter(typeof(SecondsToTimeSpanConverter))]
+        public TimeSpan Duration { get; set; }
 
-        [XmlAttribute("id")]
-        public string Id { get; set; }
+        [JsonProperty("vias")]
+        public ViaCollection Vias { get; set; }
     }
 }

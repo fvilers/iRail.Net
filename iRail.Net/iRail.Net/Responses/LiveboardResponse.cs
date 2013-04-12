@@ -1,18 +1,23 @@
 ﻿using iRail.Net.Model;
-using System;
-using System.Xml.Schema;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace iRail.Net.Responses
 {
-    [Serializable]
-    [XmlRoot("liveboard", Namespace = "", IsNullable = true)]
-    public class LiveboardResponse : ResponseBase
+    public class LiveboardResponse
     {
-        [XmlElement("station", IsNullable = true)]
+        [JsonProperty("version")]
+        public string Version { get; set; }
+
+        [JsonProperty("timestamp")]
+        public string Timestamp { get; set; }
+
+        [JsonProperty("station")]
+        public string StationValue { get; set; }
+
+        [JsonProperty("stationinfo")]
         public Station Station { get; set; }
 
-        [XmlElementAttribute("departures", Form = XmlSchemaForm.Unqualified)]
-        public Liveboard Liveboard { get; set; }
+        [JsonProperty("departures")]
+        public DepartureCollection Departures { get; set; }
     }
 }

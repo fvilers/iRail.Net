@@ -1,7 +1,7 @@
 ﻿
 namespace iRail.Net.Requests
 {
-    public class LiveboardRequest : RequestBase
+    public class LiveboardRequest : JsonRequestBase
     {
         public LiveboardRequest()
             : base("/liveboard/")

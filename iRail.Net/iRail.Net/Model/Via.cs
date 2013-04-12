@@ -1,29 +1,30 @@
 ﻿using System;
-using System.Xml.Schema;
-using System.Xml.Serialization;
+using Newtonsoft.Json;
 
 namespace iRail.Net.Model
 {
-    [Serializable]
-    [XmlType(AnonymousType = true)]
     public class Via
     {
-        [XmlElement("timeBetween", Form = XmlSchemaForm.Unqualified)]
-        public int TimeBetween { get; set; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
 
-        [XmlElement("vehicle", Form = XmlSchemaForm.Unqualified)]
-        public string Vehicle { get; set; }
-
-        [XmlElement("arrival")]
+        [JsonProperty("arrival")]
         public Arrival Arrival { get; set; }
 
-        [XmlElement("departure")]
+        [JsonProperty("departure")]
         public Departure Departure { get; set; }
 
-        [XmlElement("station", IsNullable = true)]
+        [JsonProperty("timeBetween")]
+        [JsonConverter(typeof(SecondsToTimeSpanConverter))]
+        public TimeSpan TimeBetween { get; set; }
+
+        [JsonProperty("stationinfo")]
         public Station Station { get; set; }
 
-        [XmlElement("direction", IsNullable = true)]
-        public Direction Direction { get; set; }
+        [JsonProperty("vehicle")]
+        public string Vehicle { get; set; }
+
+        [JsonProperty("direction")]
+        public Station Direction { get; set; }
     }
 }

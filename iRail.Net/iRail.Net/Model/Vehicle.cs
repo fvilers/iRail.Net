@@ -1,24 +1,16 @@
-﻿using System;
-using System.Xml.Serialization;
+﻿using Newtonsoft.Json;
 
 namespace iRail.Net.Model
 {
-    [Serializable]
-    [XmlType(AnonymousType = true)]
     public class Vehicle
     {
-        [XmlAttribute("locationX")]
+        [JsonProperty("locationX")]
         public string LocationX { get; set; }
 
-        [XmlAttribute("locationY")]
+        [JsonProperty("locationY")]
         public string LocationY { get; set; }
 
-        [XmlText]
-        public string Value { get; set; }
-
-        public override string ToString()
-        {
-            return Value;
-        }
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 }

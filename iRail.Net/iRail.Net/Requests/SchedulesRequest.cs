@@ -3,7 +3,7 @@ using iRail.Net.Model;
 
 namespace iRail.Net.Requests
 {
-    public class SchedulesRequest : RequestBase
+    public class SchedulesRequest : JsonRequestBase
     {
         public SchedulesRequest()
             : base("/connections/")
