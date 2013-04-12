@@ -14,6 +14,5 @@ namespace iRail.Net.Responses
 
         [XmlElementAttribute("departures", Form = XmlSchemaForm.Unqualified)]
         public Liveboard Liveboard { get; set; }
-
     }
 }

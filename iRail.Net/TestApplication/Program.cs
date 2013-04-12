@@ -25,7 +25,18 @@ namespace TestApplication
             //await ListAllStationsAsync(client);
             //await SchedulesAsync(client);
             //await LiveboardAsync(client);
-            await LiveboardByStationIdAsync(client);
+            //await LiveboardByStationIdAsync(client);
+            await VehicleInformationAsync(client);
+        }
+
+        private async static Task VehicleInformationAsync(IRailClient client)
+        {
+            var info = await client.VehiculeAsync("Be.NMBS.P1234");
+
+            foreach (var stop in info.Stops.Stop)
+            {
+                Console.WriteLine("Vehicle {0} stops at {1} at {2}", info.Vehicle, stop.Station, stop.Time.Formatted);
+            }
         }
 
         private async static Task LiveboardByStationIdAsync(IRailClient client)

@@ -90,7 +90,26 @@ namespace iRail.Net
             };
             var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
 
-            return response.Liveboard;
+            return response.Liveboard; // TODO: change response (see VehicleInformation)
+        }
+
+        public async Task<VehicleInformation> VehiculeAsync(string vehicleId, bool? fast = null)
+        {
+            if (vehicleId == null) throw new ArgumentNullException("vehicleId");
+
+            var request = new VehicleRequest
+            {
+                VehicleId = vehicleId
+            };
+
+            if (fast.HasValue)
+            {
+                request.Fast = fast.Value;
+            }
+
+            var response = await GetAsync<VehicleRequest, VehicleResponse>(request);
+
+            return response;
         }
 
         private async Task<TResponse> GetAsync<TRequest, TResponse>(TRequest request)

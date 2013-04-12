@@ -53,6 +53,7 @@
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\TimeSel.cs" />
     <Compile Include="Model\TransportType.cs" />
+    <Compile Include="Model\VehicleInformation.cs" />
     <Compile Include="Model\Via.cs" />
     <Compile Include="Model\ViaCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,10 +62,12 @@
     <Compile Include="Requests\LiveboardRequest.cs" />
     <Compile Include="Requests\RequestBase.cs" />
     <Compile Include="Requests\SchedulesRequest.cs" />
+    <Compile Include="Requests\VehicleRequest.cs" />
     <Compile Include="Responses\ListAllStationsResponse.cs" />
     <Compile Include="Responses\LiveboardResponse.cs" />
     <Compile Include="Responses\ResponseBase.cs" />
     <Compile Include="Responses\SchedulesResponse.cs" />
+    <Compile Include="Responses\VehicleResponse.cs" />
     <Compile Include="Wrappers\HttpClientWrapper.cs" />
     <Compile Include="Wrappers\IHttpClientWrapper.cs" />
     <Compile Include="Wrappers\ISerializationWrapper.cs" />
