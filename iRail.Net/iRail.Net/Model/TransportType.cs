@@ -15,5 +15,10 @@ namespace iRail.Net.Model
             if (transportType == null) throw new ArgumentNullException("transportType");
             _transportType = transportType;
         }
+
+        public override string ToString()
+        {
+            return _transportType;
+        }
     }
 }
