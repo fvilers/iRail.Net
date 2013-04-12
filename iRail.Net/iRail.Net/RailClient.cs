@@ -1,4 +1,5 @@
-﻿using iRail.Net.Model;
+﻿using System.Globalization;
+using iRail.Net.Model;
 using iRail.Net.Requests;
 using iRail.Net.Responses;
 using iRail.Net.Wrappers;
@@ -29,7 +30,7 @@ namespace iRail.Net
             {
                 Language = language
             };
-            var response = await GetAsync<ListAllStationsRequest, ListAllStationsResponse>(request);
+            var response = await GetAsync<ListAllStationsResponse>(request);
 
             return response.Stations;
         }
@@ -40,10 +41,10 @@ namespace iRail.Net
             if (fromStation == null) throw new ArgumentNullException("fromStation");
             if (toStation == null) throw new ArgumentNullException("toStation");
 
-            var request = new SchedulesRequest
+            var request = new SchedulesRequest(fromStation, toStation)
             {
-                FromStation = fromStation,
-                ToStation = toStation,
+                TimeSel = timeSel,
+                TransportType = transportType,
                 Language = language
             };
 
@@ -53,12 +54,7 @@ namespace iRail.Net
                 request.Time = String.Format("{0:HHmm}", when.Value);
             }
 
-            if (timeSel != null)
-            {
-                request.TimeSel = timeSel;
-            }
-
-            var response = await GetAsync<SchedulesRequest, SchedulesResponse>(request);
+            var response = await GetAsync<SchedulesResponse>(request);
 
             return response.Connections;
         }
@@ -67,18 +63,13 @@ namespace iRail.Net
         {
             if (station == null) throw new ArgumentNullException("station");
 
-            var request = new LiveboardRequest
+            var request = new LiveboardRequest(station)
             {
-                Station = station,
+                Fast = fast,
                 Language = language
             };
 
-            if (fast.HasValue)
-            {
-                request.Fast = fast.Value;
-            }
-
-            var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
+            var response = await GetAsync<LiveboardResponse>(request);
 
             return response.Departures.Items;
         }
@@ -87,12 +78,11 @@ namespace iRail.Net
         {
             if (stationId == null) throw new ArgumentNullException("stationId");
 
-            var request = new LiveboardRequest
+            var request = new LiveboardByStationIdRequest(stationId)
             {
-                StationId = stationId,
                 Language = language
             };
-            var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
+            var response = await GetAsync<LiveboardResponse>(request);
 
             return response.Departures.Items;
         }
@@ -101,24 +91,18 @@ namespace iRail.Net
         {
             if (vehicleId == null) throw new ArgumentNullException("vehicleId");
 
-            var request = new VehicleRequest
+            var request = new VehicleRequest(vehicleId)
             {
-                VehicleId = vehicleId,
+                Fast = fast,
                 Language = language
             };
 
-            if (fast.HasValue)
-            {
-                request.Fast = fast.Value;
-            }
-
-            var response = await GetAsync<VehicleRequest, VehicleResponse>(request);
+            var response = await GetAsync<VehicleResponse>(request);
 
             return response.Stops.Items;
         }
 
-        private async Task<TResponse> GetAsync<TRequest, TResponse>(TRequest request)
-            where TRequest : JsonRequestBase
+        private async Task<TResponse> GetAsync<TResponse>(JsonRequestBase request)
         {
             var result = await _httpClient.TryGetAsync(request);
             

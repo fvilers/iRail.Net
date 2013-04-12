@@ -61,6 +61,7 @@
     <Compile Include="Model\ViaCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RailClient.cs" />
+    <Compile Include="Requests\LiveboardByStationIdRequest.cs" />
     <Compile Include="Requests\JsonRequestBase.cs" />
     <Compile Include="Requests\ListAllStationsRequest.cs" />
     <Compile Include="Requests\LiveboardRequest.cs" />

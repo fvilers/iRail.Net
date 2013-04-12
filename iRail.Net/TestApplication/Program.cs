@@ -22,11 +22,11 @@ namespace TestApplication
 
         private async static Task TestClientAsync(IRailClient client)
         {
-            //await ListAllStationsAsync(client);
-            //await SchedulesAsync(client);
-            //await LiveboardAsync(client);
-            //await LiveboardByStationIdAsync(client);
-            //await VehicleInformationAsync(client);
+            await ListAllStationsAsync(client);
+            await SchedulesAsync(client);
+            await LiveboardAsync(client);
+            await LiveboardByStationIdAsync(client);
+            await VehicleInformationAsync(client);
             await ErrorHandlingdAsync(client);
         }
 

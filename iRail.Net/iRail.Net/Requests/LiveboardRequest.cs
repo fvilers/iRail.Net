@@ -1,22 +1,26 @@
 ﻿
+using System;
+
 namespace iRail.Net.Requests
 {
     public class LiveboardRequest : JsonRequestBase
     {
-        public LiveboardRequest()
+        public LiveboardRequest(string station)
             : base("/liveboard/")
         {
+            if (station == null) throw new ArgumentNullException("station");
+            Station = station;
         }
 
         public string Station
         {
             get { return GetParameter<string>("station"); }
-            set { SetParameter("station", value); }
+            private set { SetParameter("station", value); }
         }
 
-        public bool Fast
+        public bool? Fast
         {
-            get { return GetParameter<bool>("fast"); }
+            get { return GetParameter<bool?>("fast"); }
             set { SetParameter("fast", value); }
         }
 

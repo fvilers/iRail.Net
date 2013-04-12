@@ -34,7 +34,13 @@ namespace iRail.Net.Requests
 
         protected T GetParameter<T>(string key)
         {
-            return (T)_parameters[key];
+            object value;
+            if (!_parameters.TryGetValue(key, out value))
+            {
+                return default(T);
+            }
+
+            return (T)value;
         }
 
         protected void SetParameter(string key, object value)

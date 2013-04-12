@@ -1,25 +1,31 @@
 ﻿
 using iRail.Net.Model;
+using System;
 
 namespace iRail.Net.Requests
 {
     public class SchedulesRequest : JsonRequestBase
     {
-        public SchedulesRequest()
+        public SchedulesRequest(string fromStation, string toStation)
             : base("/connections/")
         {
+            if (fromStation == null) throw new ArgumentNullException("fromStation");
+            if (toStation == null) throw new ArgumentNullException("toStation");
+
+            FromStation = fromStation;
+            ToStation = toStation;
         }
 
         public string FromStation
         {
             get { return GetParameter<string>("from"); }
-            set { SetParameter("from", value); }
+            private set { SetParameter("from", value); }
         }
 
         public string ToStation
         {
             get { return GetParameter<string>("to"); }
-            set { SetParameter("to", value); }
+            private set { SetParameter("to", value); }
         }
 
         public string Date
@@ -38,6 +44,12 @@ namespace iRail.Net.Requests
         {
             get { return GetParameter<TimeSel>("timeSel"); }
             set { SetParameter("timeSel", value); }
+        }
+
+        public TransportType TransportType
+        {
+            get { return GetParameter<TransportType>("typeOfTransport"); }
+            set { SetParameter("typeOfTransport", value); }
         }
     }
 }

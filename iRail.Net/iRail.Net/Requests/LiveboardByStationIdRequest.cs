@@ -2,17 +2,16 @@
 
 namespace iRail.Net.Requests
 {
-    public class VehicleRequest : JsonRequestBase
+    public class LiveboardByStationIdRequest : JsonRequestBase
     {
-        public VehicleRequest(string vehicleId)
-            : base("/vehicle/")
+        public LiveboardByStationIdRequest(string stationId)
+            : base("/liveboard/")
         {
-            if (vehicleId == null) throw new ArgumentNullException("vehicleId");
-
-            VehicleId = vehicleId;
+            if (stationId == null) throw new ArgumentNullException("stationId");
+            StationId = stationId;
         }
 
-        public string VehicleId
+        public string StationId
         {
             get { return GetParameter<string>("id"); }
             private set { SetParameter("id", value); }
