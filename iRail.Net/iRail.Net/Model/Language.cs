@@ -2,24 +2,24 @@
 
 namespace iRail.Net.Model
 {
-    public class Lang
+    public class Language
     {
-        public static readonly Lang Fr = new Lang("FR");
-        public static readonly Lang En = new Lang("EN");
-        public static readonly Lang Nl = new Lang("NL");
-        public static readonly Lang De = new Lang("DE");
+        public static readonly Language French = new Language("FR");
+        public static readonly Language English = new Language("EN");
+        public static readonly Language Dutch = new Language("NL");
+        public static readonly Language German = new Language("DE");
 
-        private readonly string _lang;
+        private readonly string _language;
 
-        private Lang(string lang)
+        private Language(string language)
         {
-            if (lang == null) throw new ArgumentNullException("lang");
-            _lang = lang;
+            if (language == null) throw new ArgumentNullException("language");
+            _language = language;
         }
 
         public override string ToString()
         {
-            return _lang;
+            return _language;
         }
     }
 }

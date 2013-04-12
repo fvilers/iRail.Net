@@ -1,4 +1,6 @@
 ﻿
+using iRail.Net.Model;
+
 namespace iRail.Net.Requests
 {
     public class SchedulesRequest : RequestBase
@@ -10,34 +12,32 @@ namespace iRail.Net.Requests
 
         public string FromStation
         {
-            get { return Parameters["from"] as string; }
-            set
-            {
-                if (value == null)
-                {
-                    Parameters.Remove("from");
-                }
-                else
-                {
-                    Parameters["from"] = value;
-                }
-            }
+            get { return GetParameter<string>("from"); }
+            set { SetParameter("from", value); }
         }
 
         public string ToStation
         {
-            get { return Parameters["to"] as string; }
-            set
-            {
-                if (value == null)
-                {
-                    Parameters.Remove("to");
-                }
-                else
-                {
-                    Parameters["to"] = value;
-                }
-            }
+            get { return GetParameter<string>("to"); }
+            set { SetParameter("to", value); }
+        }
+
+        public string Date
+        {
+            get { return GetParameter<string>("date"); }
+            set { SetParameter("date", value); }
+        }
+
+        public string Time
+        {
+            get { return GetParameter<string>("time"); }
+            set { SetParameter("time", value); }
+        }
+
+        public TimeSel TimeSel
+        {
+            get { return GetParameter<TimeSel>("timeSel"); }
+            set { SetParameter("timeSel", value); }
         }
     }
 }

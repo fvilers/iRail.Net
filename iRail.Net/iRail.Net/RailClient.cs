@@ -20,7 +20,7 @@ namespace iRail.Net
             _serializer = serializer;
         }
 
-        public async Task<Station[]> ListAllStationsAsync(Lang lang)
+        public async Task<Station[]> ListAllStationsAsync(Language lang)
         {
             if (lang == null) throw new ArgumentNullException("lang");
 
@@ -33,6 +33,7 @@ namespace iRail.Net
             return response.Stations;
         }
 
+        // TODO: find out how to use transportType
         public async Task<Connection[]> SchedulesAsync(string fromStation, string toStation, DateTime? when = null, TimeSel timeSel = null, TransportType transportType = null)
         {
             if (fromStation == null) throw new ArgumentNullException("fromStation");
@@ -43,9 +44,53 @@ namespace iRail.Net
                 FromStation = fromStation,
                 ToStation = toStation
             };
+
+            if (when.HasValue)
+            {
+                request.Date = String.Format("{0:ddMMyy}", when.Value);
+                request.Time = String.Format("{0:HHmm}", when.Value);
+            }
+
+            if (timeSel != null)
+            {
+                request.TimeSel = timeSel;
+            }
+
             var response = await GetAsync<SchedulesRequest, SchedulesResponse>(request);
 
             return response.Connections;
+        }
+
+        public async Task<Liveboard> LiveboardAsync(string station, bool? fast = null)
+        {
+            if (station == null) throw new ArgumentNullException("station");
+
+            var request = new LiveboardRequest
+            {
+                Station = station
+            };
+
+            if (fast.HasValue)
+            {
+                request.Fast = fast.Value;
+            }
+
+            var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
+
+            return response.Liveboard;
+        }
+
+        public async Task<Liveboard> LiveboardByStationIdAsync(string stationId)
+        {
+            if (stationId == null) throw new ArgumentNullException("stationId");
+
+            var request = new LiveboardRequest
+            {
+                StationId = stationId
+            };
+            var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
+
+            return response.Liveboard;
         }
 
         private async Task<TResponse> GetAsync<TRequest, TResponse>(TRequest request)

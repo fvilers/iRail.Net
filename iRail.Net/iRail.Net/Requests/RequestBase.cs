@@ -16,17 +16,29 @@ namespace iRail.Net.Requests
             _method = method;
         }
 
-        protected Dictionary<string, object> Parameters
-        {
-            get { return _parameters; }
-        }
-
         public Uri ToRequestUri()
         {
             var query = String.Join("&", _parameters.Select(x => String.Format("{0}={1}", Uri.EscapeUriString(x.Key), Uri.EscapeUriString(x.Value.ToString()))));
             var requestUri = new Uri(new Uri(ApiUrl), String.Concat(_method, "?", query));
             
             return requestUri;
+        }
+
+        protected T GetParameter<T>(string key)
+        {
+            return (T)_parameters[key];
+        }
+
+        protected void SetParameter(string key, object value)
+        {
+            if (value != null)
+            {
+                _parameters.Add(key, value);
+            }
+            else
+            {
+                _parameters.Remove(key);
+            }
         }
     }
 }
