@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iRail.Net.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,6 +15,12 @@ namespace iRail.Net.Requests
         {
             if (method == null) throw new ArgumentNullException("method");
             _method = method;
+        }
+
+        public Language Language
+        {
+            get { return GetParameter<Language>("lang"); }
+            set { SetParameter("lang", value); }
         }
 
         public Uri ToRequestUri()

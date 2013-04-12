@@ -20,13 +20,13 @@ namespace iRail.Net
             _serializer = serializer;
         }
 
-        public async Task<Station[]> ListAllStationsAsync(Language lang)
+        public async Task<Station[]> ListAllStationsAsync(Language language = null)
         {
-            if (lang == null) throw new ArgumentNullException("lang");
+            if (language == null) throw new ArgumentNullException("language");
 
             var request = new ListAllStationsRequest
             {
-                Lang = lang
+                Language = language
             };
             var response = await GetAsync<ListAllStationsRequest, ListAllStationsResponse>(request);
 
@@ -34,7 +34,7 @@ namespace iRail.Net
         }
 
         // TODO: find out how to use transportType
-        public async Task<Connection[]> SchedulesAsync(string fromStation, string toStation, DateTime? when = null, TimeSel timeSel = null, TransportType transportType = null)
+        public async Task<Connection[]> SchedulesAsync(string fromStation, string toStation, DateTime? when = null, TimeSel timeSel = null, TransportType transportType = null, Language language = null)
         {
             if (fromStation == null) throw new ArgumentNullException("fromStation");
             if (toStation == null) throw new ArgumentNullException("toStation");
@@ -42,7 +42,8 @@ namespace iRail.Net
             var request = new SchedulesRequest
             {
                 FromStation = fromStation,
-                ToStation = toStation
+                ToStation = toStation,
+                Language = language
             };
 
             if (when.HasValue)
@@ -61,13 +62,14 @@ namespace iRail.Net
             return response.Connections;
         }
 
-        public async Task<Liveboard> LiveboardAsync(string station, bool? fast = null)
+        public async Task<Liveboard> LiveboardAsync(string station, bool? fast = null, Language language = null)
         {
             if (station == null) throw new ArgumentNullException("station");
 
             var request = new LiveboardRequest
             {
-                Station = station
+                Station = station,
+                Language = language
             };
 
             if (fast.HasValue)
@@ -80,26 +82,28 @@ namespace iRail.Net
             return response.Liveboard;
         }
 
-        public async Task<Liveboard> LiveboardByStationIdAsync(string stationId)
+        public async Task<Liveboard> LiveboardByStationIdAsync(string stationId, Language language = null)
         {
             if (stationId == null) throw new ArgumentNullException("stationId");
 
             var request = new LiveboardRequest
             {
-                StationId = stationId
+                StationId = stationId,
+                Language = language
             };
             var response = await GetAsync<LiveboardRequest, LiveboardResponse>(request);
 
             return response.Liveboard; // TODO: change response (see VehicleInformation)
         }
 
-        public async Task<VehicleInformation> VehiculeAsync(string vehicleId, bool? fast = null)
+        public async Task<VehicleInformation> VehiculeAsync(string vehicleId, bool? fast = null, Language language = null)
         {
             if (vehicleId == null) throw new ArgumentNullException("vehicleId");
 
             var request = new VehicleRequest
             {
-                VehicleId = vehicleId
+                VehicleId = vehicleId,
+                Language = language
             };
 
             if (fast.HasValue)

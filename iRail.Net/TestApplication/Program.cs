@@ -22,16 +22,16 @@ namespace TestApplication
 
         private async static Task TestClientAsync(IRailClient client)
         {
-            //await ListAllStationsAsync(client);
-            //await SchedulesAsync(client);
-            //await LiveboardAsync(client);
-            //await LiveboardByStationIdAsync(client);
+            await ListAllStationsAsync(client);
+            await SchedulesAsync(client);
+            await LiveboardAsync(client);
+            await LiveboardByStationIdAsync(client);
             await VehicleInformationAsync(client);
         }
 
         private async static Task VehicleInformationAsync(IRailClient client)
         {
-            var info = await client.VehiculeAsync("Be.NMBS.P1234");
+            var info = await client.VehiculeAsync("Be.NMBS.P1234", language: Language.French);
 
             foreach (var stop in info.Stops.Stop)
             {
@@ -42,7 +42,7 @@ namespace TestApplication
         private async static Task LiveboardByStationIdAsync(IRailClient client)
         {
             const string stationId = "BE.NMBS.008814209";
-            var liveboard = await client.LiveboardByStationIdAsync(stationId);
+            var liveboard = await client.LiveboardByStationIdAsync(stationId, Language.French);
 
             foreach (var departure in liveboard.Departures)
             {
@@ -54,7 +54,7 @@ namespace TestApplication
         private async static Task LiveboardAsync(IRailClient client)
         {
             const string station = "Nivelles";
-            var liveboard = await client.LiveboardAsync(station);
+            var liveboard = await client.LiveboardAsync(station, language: Language.French);
 
             foreach (var departure in liveboard.Departures)
             {
@@ -65,7 +65,7 @@ namespace TestApplication
 
         private async static Task SchedulesAsync(IRailClient client)
         {
-            var connections = await client.SchedulesAsync("Nivelles", "Alost", DateTime.Now.AddHours(2), TimeSel.Departure);
+            var connections = await client.SchedulesAsync("Nivelles", "Alost", DateTime.Now.AddHours(2), TimeSel.Departure, language: Language.French);
 
             foreach (var connection in connections)
             {

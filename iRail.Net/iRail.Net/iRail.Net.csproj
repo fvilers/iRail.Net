@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IRailClient.cs" />
     <Compile Include="Model\Arrival.cs" />
+    <Compile Include="Model\CollectionStop.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\Departure.cs" />
     <Compile Include="Model\Direction.cs" />
@@ -50,9 +51,11 @@
     <Compile Include="Model\Liveboard.cs" />
     <Compile Include="Model\Platform.cs" />
     <Compile Include="Model\Station.cs" />
+    <Compile Include="Model\Stop.cs" />
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\TimeSel.cs" />
     <Compile Include="Model\TransportType.cs" />
+    <Compile Include="Model\Vehicle.cs" />
     <Compile Include="Model\VehicleInformation.cs" />
     <Compile Include="Model\Via.cs" />
     <Compile Include="Model\ViaCollection.cs" />
