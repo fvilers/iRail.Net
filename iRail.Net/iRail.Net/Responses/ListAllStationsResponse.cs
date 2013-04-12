@@ -1,6 +1,5 @@
 ﻿using iRail.Net.Model;
 using Newtonsoft.Json;
-using System.Collections.Generic;
 
 namespace iRail.Net.Responses
 {

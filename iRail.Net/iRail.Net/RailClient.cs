@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using iRail.Net.Model;
+﻿using iRail.Net.Model;
 using iRail.Net.Requests;
 using iRail.Net.Responses;
 using iRail.Net.Wrappers;
