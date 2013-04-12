@@ -8,7 +8,7 @@ namespace iRail.Net.Wrappers
         public T Deserialize<T>(string value)
         {
             var serializer = new XmlSerializer(typeof(T));
-
+            
             using (var reader = new StringReader(value))
             {
                 return (T)serializer.Deserialize(reader);

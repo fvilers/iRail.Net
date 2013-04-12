@@ -4,27 +4,27 @@ using System.Xml.Serialization;
 namespace iRail.Net.Model
 {
     [Serializable]
-    [XmlTypeAttribute(AnonymousType = true)]
+    [XmlType(AnonymousType = true)]
     public class Station
     {
-        [XmlAttribute(AttributeName = "id")]
+        [XmlAttribute("id")]
         public string Id { get; set; }
 
-        [XmlAttribute(AttributeName = "locationX")]
+        [XmlAttribute("locationX")]
         public decimal LocationX { get; set; }
 
-        [XmlAttribute(AttributeName = "locationY")]
+        [XmlAttribute("locationY")]
         public decimal LocationY { get; set; }
 
-        [XmlAttribute(AttributeName = "standardname")]
+        [XmlAttribute("standardname")]
         public string StandardName { get; set; }
 
-        [XmlTextAttribute]
+        [XmlText]
         public string Value { get; set; }
 
         public override string ToString()
         {
-            return Value;
+            return Value ?? StandardName;
         }
     }
 }

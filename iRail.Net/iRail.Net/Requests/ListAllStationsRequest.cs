@@ -12,7 +12,17 @@ namespace iRail.Net.Requests
         public Lang Lang
         {
             get { return Parameters["lang"] as Lang; }
-            set { Parameters["lang"] = value; }
+            set
+            {
+                if (value == null)
+                {
+                    Parameters.Remove("lang");
+                }
+                else
+                {
+                    Parameters["lang"] = value;
+                }
+            }
         }
     }
 }
