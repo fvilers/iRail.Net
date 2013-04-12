@@ -30,7 +30,7 @@ namespace TestApplication
 
         private async static Task LiveboardByStationIdAsync(IRailClient client)
         {
-            var stationId = "BE.NMBS.008814209";
+            const string stationId = "BE.NMBS.008814209";
             var liveboard = await client.LiveboardByStationIdAsync(stationId);
 
             foreach (var departure in liveboard.Departures)
@@ -42,7 +42,7 @@ namespace TestApplication
 
         private async static Task LiveboardAsync(IRailClient client)
         {
-            var station = "Nivelles";
+            const string station = "Nivelles";
             var liveboard = await client.LiveboardAsync(station);
 
             foreach (var departure in liveboard.Departures)
