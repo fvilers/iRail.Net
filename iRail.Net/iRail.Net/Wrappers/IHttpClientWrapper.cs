@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
-using iRail.Net.Requests;
+﻿using iRail.Net.Requests;
+using System;
+using System.Threading.Tasks;
 
 namespace iRail.Net.Wrappers
 {
     public interface IHttpClientWrapper
     {
-        Task<string> GetAsync(JsonRequestBase jsonRequest);
+        Task<Tuple<bool, string>> TryGetAsync(JsonRequestBase request);
     }
 }

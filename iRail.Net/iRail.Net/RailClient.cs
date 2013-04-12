@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace iRail.Net
 {
+    // TODO: NuGet package
     public class RailClient : IRailClient
     {
         private readonly IHttpClientWrapper _httpClient;
@@ -119,11 +120,25 @@ namespace iRail.Net
         private async Task<TResponse> GetAsync<TRequest, TResponse>(TRequest request)
             where TRequest : JsonRequestBase
         {
-            // TODO: error management
-            var value = await _httpClient.GetAsync(request);
-            var response = await _serializer.DeserializeAsync<TResponse>(value);
+            var result = await _httpClient.TryGetAsync(request);
+            
+            if (!result.Item1)
+            {
+                throw new RailClientException(await _serializer.DeserializeAsync<ErrorResponse>(result.Item2));
+            }
 
-            return response;
+            return await _serializer.DeserializeAsync<TResponse>(result.Item2);
+        }
+    }
+
+    public class RailClientException : Exception
+    {
+        public int ErrorCode { get; private set; }
+
+        public RailClientException(ErrorResponse errorResponse)
+            : base(errorResponse.Message)
+        {
+            ErrorCode = errorResponse.ErrorCode;
         }
     }
 }

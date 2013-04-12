@@ -26,7 +26,31 @@ namespace TestApplication
             //await SchedulesAsync(client);
             //await LiveboardAsync(client);
             //await LiveboardByStationIdAsync(client);
-            await VehicleInformationAsync(client);
+            //await VehicleInformationAsync(client);
+            await ErrorHandlingdAsync(client);
+        }
+
+        private async static Task ErrorHandlingdAsync(IRailClient client)
+        {
+            const string station = "";
+            Departure[] departures;
+
+            try
+            {
+                departures = await client.LiveboardAsync(station, language: Language.French);
+            }
+            catch (RailClientException e)
+            {
+                Console.WriteLine("Error code: {0}", e.ErrorCode);
+                Console.WriteLine("Message: {0}", e.Message);
+                return;
+            }
+
+            foreach (var departure in departures)
+            {
+                Console.WriteLine("Departure from {0} at {1} with vehicle {2} on platform {3} in direction of {4} (delay {5} seconds)",
+                    station, departure.Time, departure.Vehicle, departure.Platform.Normal, departure.Station.Name, departure.Delay);
+            }
         }
 
         private async static Task VehicleInformationAsync(IRailClient client)

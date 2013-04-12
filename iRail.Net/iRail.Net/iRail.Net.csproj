@@ -67,6 +67,7 @@
     <Compile Include="Requests\SchedulesRequest.cs" />
     <Compile Include="Requests\VehicleRequest.cs" />
     <Compile Include="Model\DepartureCollection.cs" />
+    <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\ListAllStationsResponse.cs" />
     <Compile Include="Responses\LiveboardResponse.cs" />
     <Compile Include="Responses\SchedulesResponse.cs" />
