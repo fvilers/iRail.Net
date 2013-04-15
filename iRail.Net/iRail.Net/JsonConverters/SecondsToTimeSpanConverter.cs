@@ -1,7 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using Newtonsoft.Json;
 
-namespace iRail.Net
+namespace iRail.Net.JsonConverters
 {
     public class SecondsToTimeSpanConverter : JsonConverter
     {

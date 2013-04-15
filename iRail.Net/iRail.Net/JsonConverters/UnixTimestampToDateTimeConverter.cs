@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using System;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System;
 
-namespace iRail.Net
+namespace iRail.Net.JsonConverters
 {
     public class UnixTimestampToDateTimeConverter : DateTimeConverterBase
     {

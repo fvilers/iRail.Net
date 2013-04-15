@@ -1,5 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using iRail.Net.JsonConverters;
+using Newtonsoft.Json;
 
 namespace iRail.Net.Model
 {

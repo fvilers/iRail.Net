@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRailClient.cs" />
+    <Compile Include="JsonConverters\SecondsToTimeSpanConverter.cs" />
+    <Compile Include="JsonConverters\UnixTimestampToDateTimeConverter.cs" />
     <Compile Include="Model\Arrival.cs" />
     <Compile Include="Model\Connection.cs" />
     <Compile Include="Model\Departure.cs" />
@@ -73,8 +75,6 @@
     <Compile Include="Responses\LiveboardResponse.cs" />
     <Compile Include="Responses\SchedulesResponse.cs" />
     <Compile Include="Responses\VehicleResponse.cs" />
-    <Compile Include="SecondsToTimeSpanConverter.cs" />
-    <Compile Include="UnixTimestampToDateTimeConverter.cs" />
     <Compile Include="Wrappers\HttpClientWrapper.cs" />
     <Compile Include="Wrappers\IHttpClientWrapper.cs" />
     <Compile Include="Wrappers\ISerializationWrapper.cs" />
